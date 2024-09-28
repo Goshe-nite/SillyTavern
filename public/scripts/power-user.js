@@ -173,6 +173,7 @@ let power_user = {
     auto_swipe_blacklist: [],
     auto_swipe_blacklist_threshold: 2,
     auto_scroll_chat_to_bottom: true,
+    vn_mode_auto_scroll_chat_to_bottom: true,
     auto_fix_generated_markdown: true,
     send_on_enter: send_on_enter_options.AUTO,
     console_log_prompts: false,
@@ -1480,6 +1481,7 @@ async function loadPowerUserSettings(settings, data) {
     $('#show_group_chat_queue').prop('checked', power_user.show_group_chat_queue);
     $('#auto_fix_generated_markdown').prop('checked', power_user.auto_fix_generated_markdown);
     $('#auto_scroll_chat_to_bottom').prop('checked', power_user.auto_scroll_chat_to_bottom);
+    $('#vn_mode_auto_scroll_chat_to_bottom').prop('checked', power_user.vn_mode_auto_scroll_chat_to_bottom);
     $('#bogus_folders').prop('checked', power_user.bogus_folders);
     $('#zoomed_avatar_magnification').prop('checked', power_user.zoomed_avatar_magnification);
     $(`#tokenizer option[value="${power_user.tokenizer}"]`).attr('selected', true);
@@ -3395,6 +3397,11 @@ $(document).ready(() => {
 
     $('#auto_scroll_chat_to_bottom').on('input', function () {
         power_user.auto_scroll_chat_to_bottom = !!$(this).prop('checked');
+        saveSettingsDebounced();
+    });
+
+    $('#vn_mode_auto_scroll_chat_to_bottom').on('input', function () {
+        power_user.vn_mode_auto_scroll_chat_to_bottom = !!$(this).prop('checked');
         saveSettingsDebounced();
     });
 
